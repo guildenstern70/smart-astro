@@ -1,0 +1,32 @@
+<!--
+     SmartAstro
+     A web template for modern websites
+     Copyright (c) 2025 Alessio Saltarin
+     BSD License
+ -->
+---
+import Layout from "../layouts/layout.astro";
+import Riddle from "../components/riddle.astro";
+---
+<Layout>
+    <div class="container">
+        <h1>Let's play little game</h1>
+        <div class="row">
+            <div class="column">
+                <p>And when you're done, you may</p>
+                <a class="button" href="/">Go back home</a>
+            </div>
+            <div class="column">
+                <div class="game">
+                    <Riddle />
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .game {
+        margin-top: 5px;
+    }
+</style>

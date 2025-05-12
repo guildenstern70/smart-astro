@@ -1,0 +1,68 @@
+<!--
+     SmartAstro
+     A web template for modern websites
+     Copyright (c) 2025 Alessio Saltarin
+     BSD License
+ -->
+
+---
+
+---
+
+<div id="dicegame" class="container">
+    <p>I just thought a number between 1 and 10.</p>
+    <form id="guessform">
+        <label for="guessnumber">
+            What number did I think of?
+        </label>
+        <input type="number" min="1" max="10" id="guessnumber"
+               placeholder="Type a number between 1 and 10"></input>
+    </form>
+    <div id="hint"></div>
+</div>
+
+
+<script>
+    let guessNumber = Math.floor(Math.random() * 10);
+    console.log("The number I thought is: " + guessNumber);
+
+    const formEl: HTMLFormElement | null = document.getElementById("guessform") as HTMLFormElement;
+    const guessedNumberEl: HTMLInputElement | null = document.getElementById("guessnumber") as HTMLInputElement;
+    const hintDiv: HTMLDivElement | null = document.getElementById("hint") as HTMLDivElement;
+
+    function riddle(guess: number): string {
+        let message = "";
+        if (guessNumber > guess) {
+            message = "The number I thought is greater than " + guess;
+        } else if (guessNumber < guess) {
+            message = "The number I thought is lower than " + guess;
+        } else if (guessNumber === guess) {
+            message = "You guessed!";
+        }
+        console.log(message);
+        return message;
+    }
+
+    function game(guess: number) {
+        if (hintDiv) {
+            hintDiv.innerHTML = "...";
+            setTimeout(() => {
+                hintDiv.innerHTML = riddle(guess);
+            }, 2000);
+        }
+    }
+
+    if (formEl && guessedNumberEl) {
+        guessedNumberEl.addEventListener('input', (event) => {
+            guessedNumberEl.disabled = true;
+            game(parseInt(guessedNumberEl.value));
+            guessedNumberEl.disabled = false;
+            guessedNumberEl.focus();
+        })
+        formEl.addEventListener('submit', function (event) {
+            event.preventDefault();
+        });
+    }
+
+</script>
+

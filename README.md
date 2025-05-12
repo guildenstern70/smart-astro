@@ -1,21 +1,35 @@
 # SmartAstro
 
-SmartAstro is a template for building a personal website using Astro, Semantic UI, and TypeScript. 
+SmartAstro is a template for building lightweight and modern websites. It is based on the Astro framework and uses the following technologies:
+
+* TypeScript
+* React
+* Bun
+* Milligram CSS (https://milligram.io/)
+
+
 It is designed to be easy to use and customize, allowing you to create a beautiful and functional website quickly.
 
-## 🧞 Commands
+## Setup
 
-All commands are run from the root of the project, from a terminal:
+Install dependencies:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+```bash
+bun install
+```
 
-## 👀 Want to learn more?
+## Development
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Run the development server:
+
+```bash
+bun dev
+```
+
+## Build
+
+Build the project for production:
+
+```bash
+bun build
+```

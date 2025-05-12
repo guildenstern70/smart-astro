@@ -1,11 +1,36 @@
+<!--
+     SmartAstro
+     A web template for modern websites
+     Copyright (c) 2025 Alessio Saltarin
+     BSD License
+ -->
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '../layouts/layout.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<h1>SmartAstro</h1>
+	<blockquote>
+		<em>SmartAstro is a web template for modern applications.</em>
+	</blockquote>
+	<div>
+		<p>It uses the following technologies:</p>
+		<ul>
+			<li>
+				<a href={'https://astro.build/'} target="_blank">Astro</a> - A fast, modern and lightweight web framework.
+			</li>
+			<li>
+				<a href={'https://www.typescriptlang.org/'} target="_blank">TypeScript</a> - A superset of JavaScript that adds static types.
+			</li>
+			<li>
+				<a href={'https://bun.sh/'} target="_blank">Bun</a> - A modern JavaScript runtime and bundler that is fast and efficient.
+			</li>
+			<li>
+				<a href={'https://milligram.io/'} target="_blank">Milligram</a> - A minimalist CSS framework for fast and clean designs.
+			</li>
+		</ul>
+	</div>
+	<p style={{ marginTop: '40px' }}>
+		<a class="button" href="/learnmore">Learn more</a>
+	</p>
 </Layout>
