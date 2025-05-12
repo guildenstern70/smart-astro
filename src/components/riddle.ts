@@ -7,7 +7,11 @@
 
  */
 
-let guessNumber = Math.floor(Math.random() * 10);
+const MAX_NUMBER = 10;
+const THINKING_TIME = 2000; // 2 seconds
+
+let guessNumber = Math.floor(Math.random() * MAX_NUMBER);
+
 console.log("The number I thought is: " + guessNumber);
 
 const formEl: HTMLFormElement | null = document.getElementById("guessform") as HTMLFormElement;
@@ -27,7 +31,7 @@ if (formEl && guessedNumberEl) {
     });
 }
 
-function riddle(guess: number): string {
+const riddle = (guess: number): string => {
     let message = "";
     if (guessNumber > guess) {
         message = "The number I thought is greater than " + guess;
@@ -40,21 +44,21 @@ function riddle(guess: number): string {
     return message;
 }
 
-function game(guess: number) {
+const game = (guess: number)=> {
     if (hintDiv) {
         hintDiv.classList.add("spinner");
         setTimeout(() => {
             hintDiv.classList.remove("spinner");
-            if (guess > 0 && guess < 11) {
+            if (guess > 0 && guess < MAX_NUMBER + 1) {
                 hintDiv.innerHTML = riddle(guess);
             } else {
                 hintDiv.innerHTML = "Please type a number between 1 and 10";
             }
-        }, 2200);
+        }, THINKING_TIME);
     }
 }
 
-function guessNumberEvent(numberInput: HTMLInputElement) {
+const guessNumberEvent = (numberInput: HTMLInputElement) => {
     const numberString = numberInput.value;
     if (numberString.length < 1) return;
     game(parseInt(numberString));
