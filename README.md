@@ -37,3 +37,7 @@ Build the project for production:
 ```bash
 bun build
 ```
+
+## License
+
+This project is licensed under the BSD License. See the [LICENSE](LICENSE) file for details.
