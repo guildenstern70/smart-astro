@@ -21,6 +21,23 @@
     <div id="hint"></div>
 </div>
 
+<style>
+    .spinner {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: conic-gradient(#0000 10%,#474bff);
+        -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 9px),#000 0);
+        animation: spinner-zp9dbg 1s infinite linear;
+    }
+
+    @keyframes spinner-zp9dbg {
+        to {
+            transform: rotate(1turn);
+        }
+    }
+</style>
+
 
 <script>
     let guessNumber = Math.floor(Math.random() * 10);
@@ -45,24 +62,40 @@
 
     function game(guess: number) {
         if (hintDiv) {
-            hintDiv.innerHTML = "...";
+            hintDiv.classList.add("spinner");
             setTimeout(() => {
-                hintDiv.innerHTML = riddle(guess);
-            }, 2000);
+                hintDiv.classList.remove("spinner");
+                if (guess > 0 && guess < 11) {
+                    hintDiv.innerHTML = riddle(guess);
+                } else {
+                    hintDiv.innerHTML = "Please type a number between 1 and 10";
+                }
+            }, 2200);
         }
     }
 
+    function guessNumberEvent(numberInput: HTMLInputElement) {
+        const numberString = numberInput.value;
+        if (numberString.length < 1) return;
+        game(parseInt(numberString));
+        numberInput.disabled = false;
+        numberInput.focus();
+    }
+
     if (formEl && guessedNumberEl) {
-        guessedNumberEl.addEventListener('input', (event) => {
-            guessedNumberEl.disabled = true;
-            game(parseInt(guessedNumberEl.value));
-            guessedNumberEl.disabled = false;
-            guessedNumberEl.focus();
-        })
-        formEl.addEventListener('submit', function (event) {
+        guessedNumberEl.addEventListener('input', () => {
+            hintDiv.innerHTML = "";
+            guessNumberEvent(guessedNumberEl);
+        });
+        formEl.addEventListener('submit', (event) =>
+        {
             event.preventDefault();
+            hintDiv.innerHTML = "";
+            guessNumberEvent(guessedNumberEl);
         });
     }
 
 </script>
+
+
 
