@@ -40,6 +40,14 @@ Build the project for production:
 bun build
 ```
 
+## Test
+
+Run the tests:
+
+```bash
+bun test
+```
+
 ## License
 
 This project is licensed under the BSD License. See the [LICENSE](LICENSE) file for details.

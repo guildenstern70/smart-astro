@@ -7,11 +7,12 @@
 
  */
 
+import { guess } from '../lib/logic/guessing';
+
 const MAX_NUMBER = 10;
 const THINKING_TIME = 2000; // 2 seconds
 
 let guessNumber = Math.floor(Math.random() * MAX_NUMBER);
-
 console.log("The number I thought is: " + guessNumber);
 
 const formEl: HTMLFormElement | null = document.getElementById("guessform") as HTMLFormElement;
@@ -31,26 +32,13 @@ if (formEl && guessedNumberEl) {
     });
 }
 
-const riddle = (guess: number): string => {
-    let message = "";
-    if (guessNumber > guess) {
-        message = "The number I thought is greater than " + guess;
-    } else if (guessNumber < guess) {
-        message = "The number I thought is lower than " + guess;
-    } else if (guessNumber === guess) {
-        message = "You guessed!";
-    }
-    console.log(message);
-    return message;
-}
-
-const game = (guess: number)=> {
+const game = (guessed: number)=> {
     if (hintDiv) {
         hintDiv.classList.add("spinner");
         setTimeout(() => {
             hintDiv.classList.remove("spinner");
-            if (guess > 0 && guess < MAX_NUMBER + 1) {
-                hintDiv.innerHTML = riddle(guess);
+            if (guessed > 0 && guessed < MAX_NUMBER + 1) {
+                hintDiv.innerHTML = guess(guessed, guessNumber);
             } else {
                 hintDiv.innerHTML = "Please type a number between 1 and 10";
             }
