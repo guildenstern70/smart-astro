@@ -6,10 +6,14 @@
  -->
 ---
 import Layout from '../layouts/layout.astro';
+import * as info from '../../package.json';
+const version = info.version;
 ---
 
 <Layout>
-	<h1>SmartAstro</h1>
+
+	<h1>SmartAstro</h1>&nbsp;<small>v.{version}</small>
+
 	<blockquote>
 		<em>SmartAstro is a web template for modern applications.</em>
 	</blockquote>
@@ -34,3 +38,9 @@ import Layout from '../layouts/layout.astro';
 		<a class="button" href="/learnmore">Learn more</a>
 	</p>
 </Layout>
+
+<style>
+	h1 {
+		display: inline;
+	}
+</style>
