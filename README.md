@@ -40,6 +40,9 @@ Build the project for production:
 bun build
 ```
 
+Building the project will produce a set of static files in the "dist" directory, ready to be deployed 
+on any HTTP server. The default configuration uses Netlify as host.
+
 ## Test
 
 Run the tests:
@@ -47,6 +50,21 @@ Run the tests:
 ```bash
 bun test
 ```
+
+## Docker
+
+Build the container with
+
+    docker build -t smart-astro .
+
+Then run the container with
+
+    docker run -p 8080:80 smart-astro 
+
+You can now see the SmartAstro app in your browser at:
+
+    http://localhost:8080
+
 
 ## License
 
