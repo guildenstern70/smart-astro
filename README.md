@@ -2,6 +2,8 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a320c175cdbd4c8c9b2781c1ec219999)](https://app.codacy.com/gh/guildenstern70/smart-astro/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
+<img src="smartastro.png" alt="SmartAstro" width="600px"/>
+
 *SmartAstro* is a template for building lightweight and modern websites. It is based on the Astro framework and uses the following technologies:
 
 * TypeScript
@@ -14,7 +16,6 @@ You can view the demo site at [https://smartastro.netlify.app](https://smartastr
 
 It is designed to be easy to use and customize, allowing you to create a beautiful and functional website quickly.
 
-<img src="smartastro.png" alt="SmartAstro" width="500px"/>
 
 ## Setup
 
