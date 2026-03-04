@@ -2,7 +2,7 @@
 
      SmartAstro
      A web template for modern websites
-     Copyright (c) 2025 Alessio Saltarin
+     Copyright (c) 2025-26 Alessio Saltarin
      BSD License
 
  */

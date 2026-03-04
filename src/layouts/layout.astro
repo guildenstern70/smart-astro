@@ -1,41 +1,69 @@
-<!--
-     SmartAstro
-     A web template for modern websites
-     Copyright (c) 2025 Alessio Saltarin
-     BSD License
- -->
+---
+import '../styles/global.css';
+---
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<!-- Google Fonts -->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-		<!-- CSS Reset -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-		<!-- Milligram CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
 		<meta name="generator" content={Astro.generator} />
 		<title>SmartAstro</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 	</head>
-	<body>
-		<main>
+	<body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col">
+		<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+			<nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex justify-between h-16 items-center">
+					<div class="flex items-center gap-2">
+						<a href="/" class="text-2xl font-bold text-indigo-600 flex items-center gap-2">
+							<span class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-lg">S</span>
+							SmartAstro
+						</a>
+					</div>
+					<div class="hidden md:flex items-center space-x-8">
+						<a href="/" class="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Home</a>
+						<a href="/learnmore" class="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Learn More</a>
+						<a href="/firstgame" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-all shadow-sm">
+							Play Game
+						</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
 			<slot />
 		</main>
+
+		<footer class="bg-white border-t border-gray-200 py-8">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+					<div class="text-sm text-gray-500">
+						&copy; {new Date().getFullYear()} SmartAstro. BSD License.
+					</div>
+					<div class="flex items-center space-x-6">
+						<a href="https://github.com/asaltarin/smart-astro" class="text-gray-400 hover:text-gray-500 transition-colors">
+							GitHub
+						</a>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>
 
-<style>
+<style is:global>
+	:root {
+		font-family: 'Inter', sans-serif;
+	}
+	
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
-	}
-
-	main {
-		padding: 2rem;
-		margin: 100px;
 	}
 </style>

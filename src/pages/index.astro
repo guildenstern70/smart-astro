@@ -1,9 +1,3 @@
-<!--
-     SmartAstro
-     A web template for modern websites
-     Copyright (c) 2025 Alessio Saltarin
-     BSD License
- -->
 ---
 import Layout from '../layouts/layout.astro';
 import * as info from '../../package.json';
@@ -11,36 +5,68 @@ const version = info.version;
 ---
 
 <Layout>
+	<div class="space-y-16">
+		<section class="text-center space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+			<div class="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-indigo-50 text-indigo-700 ring-1 ring-inset ring-indigo-700/10 mb-4">
+				Version {version}
+			</div>
+			<h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-gray-900">
+				Build faster with <span class="text-indigo-600">SmartAstro</span>
+			</h1>
+			<p class="max-w-2xl mx-auto text-xl text-gray-600 leading-relaxed">
+				A clean, modern web template designed for performance and developer experience.
+				Built with the latest technologies for a seamless workflow.
+			</p>
+			<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+				<a href="/firstgame" class="w-full sm:w-auto px-8 py-4 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-all shadow-lg hover:shadow-indigo-200 active:scale-95">
+					Try the Game
+				</a>
+				<a href="/learnmore" class="w-full sm:w-auto px-8 py-4 bg-white text-gray-700 font-semibold rounded-xl border border-gray-200 hover:bg-gray-50 transition-all active:scale-95">
+					Learn More
+				</a>
+			</div>
+		</section>
 
-	<h1>SmartAstro</h1>&nbsp;<small>v.{version}</small>
+		<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+			<div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+				<div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+					</svg>
+				</div>
+				<h3 class="text-xl font-bold mb-2">Astro 5</h3>
+				<p class="text-gray-600">Ship less shipping-less JavaScript for faster page loads.</p>
+			</div>
 
-	<blockquote>
-		<em>SmartAstro is a web template for modern applications.</em>
-	</blockquote>
-	<div>
-		<p>It uses the following technologies:</p>
-		<ul>
-			<li>
-				<a href={'https://astro.build/'} target="_blank">Astro</a> - A fast, modern and lightweight web framework.
-			</li>
-			<li>
-				<a href={'https://www.typescriptlang.org/'} target="_blank">TypeScript</a> - A superset of JavaScript that adds static types.
-			</li>
-			<li>
-				<a href={'https://bun.sh/'} target="_blank">Bun</a> - A modern JavaScript runtime and bundler that is fast and efficient.
-			</li>
-			<li>
-				<a href={'https://milligram.io/'} target="_blank">Milligram</a> - A minimalist CSS framework for fast and clean designs.
-			</li>
-		</ul>
+			<div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+				<div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04 inter-4.016 11.955 11.955 0 01-3.868 8.11 11.963 11.963 0 014.867 6.68 11.963 11.963 0 014.867-6.68 11.955 11.955 0 01-3.868-8.11z" />
+					</svg>
+				</div>
+				<h3 class="text-xl font-bold mb-2">TypeScript</h3>
+				<p class="text-gray-600">Full type safety for a more robust and maintainable codebase.</p>
+			</div>
+
+			<div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+				<div class="w-12 h-12 bg-pink-50 text-pink-600 rounded-xl flex items-center justify-center mb-6">
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+					</svg>
+				</div>
+				<h3 class="text-xl font-bold mb-2">Tailwind CSS</h3>
+				<p class="text-gray-600">Rapidly build modern designs without leaving your HTML.</p>
+			</div>
+
+			<div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+				<div class="w-12 h-12 bg-yellow-50 text-yellow-600 rounded-xl flex items-center justify-center mb-6">
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+					</svg>
+				</div>
+				<h3 class="text-xl font-bold mb-2">Bun</h3>
+				<p class="text-gray-600">The fast all-in-one JavaScript runtime for your project.</p>
+			</div>
+		</section>
 	</div>
-	<p style={{ marginTop: '40px' }}>
-		<a class="button" href="/learnmore">Learn more</a>
-	</p>
 </Layout>
-
-<style>
-	h1 {
-		display: inline;
-	}
-</style>

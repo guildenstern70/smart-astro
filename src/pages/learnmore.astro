@@ -1,30 +1,45 @@
-<!--
-     SmartAstro
-     A web template for modern websites
-     Copyright (c) 2025 Alessio Saltarin
-     BSD License
- -->
 ---
 import Layout from "../layouts/layout.astro";
 ---
 
 <Layout>
-    <h1>Learn More Here</h1>
-    <p>
-        This minimalist web template is perfect for <b>single-page</b> or <b>small web sites</b>
-        that need a fast responses and clean design.
-    </p>
-    <p>
-        Now you can <a href="/">go back home</a>, or we can play a little game.
-    </p>
-    <div>
-        <a class="command button" href="/">Go back home</a>
-        <a class="command button button-outline" href="/firstgame">Let's play a game, shall we?</a>
+    <div class="max-w-3xl mx-auto space-y-12">
+        <header class="space-y-4">
+            <h1 class="text-4xl font-bold text-gray-900">Learn More</h1>
+            <p class="text-xl text-gray-600">
+                Discover why SmartAstro is the perfect starting point for your next web project.
+            </p>
+        </header>
+
+        <div class="prose prose-indigo max-w-none text-gray-600 space-y-6 text-lg leading-relaxed">
+            <p>
+                This minimalist web template is perfect for <strong class="text-gray-900">single-page</strong> or <strong class="text-gray-900">small web sites</strong> 
+                that need fast responses and a clean, professional design.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
+                <div class="bg-indigo-50 p-6 rounded-2xl">
+                    <h3 class="font-bold text-indigo-900 mb-2">Performance First</h3>
+                    <p class="text-indigo-800/80 text-base">Astro's island architecture ensures that only the necessary JavaScript is sent to the browser.</p>
+                </div>
+                <div class="bg-green-50 p-6 rounded-2xl">
+                    <h3 class="font-bold text-green-900 mb-2">Modern Styling</h3>
+                    <p class="text-green-800/80 text-base">Tailwind CSS provides a robust foundation for building beautiful, responsive interfaces quickly.</p>
+                </div>
+            </div>
+
+            <p>
+                Ready to see it in action? You can try our interactive demo or head back to the main page.
+            </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center gap-4 pt-8 border-t border-gray-100">
+            <a class="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white font-medium rounded-xl hover:bg-indigo-700 transition-all text-center" href="/firstgame">
+                Let's play a game
+            </a>
+            <a class="w-full sm:w-auto px-6 py-3 bg-white text-gray-700 font-medium rounded-xl border border-gray-200 hover:bg-gray-50 transition-all text-center" href="/">
+                Go back home
+            </a>
+        </div>
     </div>
 </Layout>
-
-<style>
-    .command {
-        margin-right: 0.5rem;
-    }
-</style>
