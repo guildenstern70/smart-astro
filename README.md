@@ -9,7 +9,7 @@
 * TypeScript
 * React
 * Bun
-* Milligram CSS (https://milligram.io/)
+* Tailwind CSS
 
 SmartAstro templates can be deployed on Netlify. 
 You can view the demo site at [https://smartastro.netlify.app](https://smartastro.netlify.app).
