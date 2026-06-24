@@ -11,7 +11,7 @@
 * Bun
 * Tailwind CSS
 
-SmartAstro templates can be deployed on Netlify. 
+Web sites built with SmartAstro can be deployed on Netlify. 
 You can view the demo site at [https://smartastro.netlify.app](https://smartastro.netlify.app).
 
 It is designed to be easy to use and customize, allowing you to create a beautiful and functional website quickly.

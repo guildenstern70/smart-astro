@@ -11,10 +11,10 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/netlify": "^6.6.4",
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/netlify": "^8.0.0",
     "@tailwindcss/vite": "^4.2.1",
-    "astro": "5.18.0",
+    "astro": "7.0.2",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3",
     "vitest": "3.1.3"
