@@ -1,0 +1,240 @@
+---
+/*
+     SmartAstro - Tetris UI Component
+     Copyright (c) 2026 Alessio Saltarin & AI Assistant
+     BSD License
+*/
+---
+
+<div class="w-full max-w-4xl mx-auto bg-slate-950 rounded-3xl border border-slate-800 shadow-2xl p-6 md:p-8 text-slate-100 font-sans relative overflow-hidden">
+    <!-- Neon Background Decorative Gradients -->
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+        
+        <!-- Left: Game Area (Grid Cols: 7) -->
+        <div class="lg:col-span-7 flex flex-col items-center">
+            <div class="relative w-full max-w-[260px] aspect-[1/2] bg-slate-900/60 backdrop-blur-sm rounded-2xl border border-slate-800 shadow-inner overflow-hidden p-1.5 flex items-center justify-center">
+                <!-- Main Game Canvas -->
+                <canvas 
+                    id="tetris-board" 
+                    width="240" 
+                    height="480" 
+                    class="w-full h-full bg-slate-950/90 rounded-xl"
+                ></canvas>
+
+                <!-- Overlay Screens (Start, Pause, Game Over) -->
+                <!-- Start Screen Overlay -->
+                <div id="screen-start" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/85 backdrop-blur-md rounded-2xl transition-all duration-300">
+                    <div class="text-center space-y-6 px-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 animate-pulse mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                            TETRIS RETRO
+                        </h2>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Test your reflexes in this classic puzzle game. Align shapes to clear lines and score!
+                        </p>
+                        <button id="btn-start-game" class="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/35 hover:-translate-y-0.5 active:translate-y-0">
+                            Start Playing
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pause Screen Overlay -->
+                <div id="screen-paused" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/80 backdrop-blur-md rounded-2xl transition-all duration-300 hidden">
+                    <div class="text-center space-y-4 px-6">
+                        <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-cyan-400 tracking-wider">GAME PAUSED</h2>
+                        <p class="text-slate-400 text-xs">Press <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-slate-300 font-mono">P</kbd> or click button to resume</p>
+                        <button id="btn-resume-game" class="px-6 py-2.5 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 font-semibold rounded-xl transition-colors">
+                            Resume Game
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Game Over Screen Overlay -->
+                <div id="screen-gameover" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/90 backdrop-blur-md rounded-2xl transition-all duration-300 hidden">
+                    <div class="text-center space-y-6 px-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-500 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                        </div>
+                        <div class="space-y-1">
+                            <h2 class="text-3xl font-extrabold text-rose-500 tracking-wider">GAME OVER</h2>
+                            <p id="gameover-final-score" class="text-slate-300 text-sm font-medium">Final Score: 0</p>
+                        </div>
+                        <p class="text-slate-500 text-xs">Rows fill up fast! Try stack them tighter next time.</p>
+                        <button id="btn-restart-game" class="w-full py-3 bg-gradient-to-r from-rose-500 to-orange-500 hover:from-rose-600 hover:to-orange-600 text-white font-bold rounded-xl transition-all shadow-lg shadow-rose-500/20 hover:-translate-y-0.5 active:translate-y-0">
+                            Play Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Stats & Sidebar (Grid Cols: 5) -->
+        <div class="lg:col-span-5 flex flex-col gap-6 w-full">
+            <!-- Next Piece Panel -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-4 flex flex-col items-center">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Next Shape</span>
+                <div class="w-28 h-28 bg-slate-950/80 rounded-xl border border-slate-850 flex items-center justify-center p-1 shadow-inner">
+                    <canvas id="tetris-next" width="100" height="100" class="w-full h-full"></canvas>
+                </div>
+            </div>
+
+            <!-- Stats Block -->
+            <div class="grid grid-cols-3 lg:grid-cols-1 gap-4">
+                <!-- Score Card -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-4 flex flex-col items-center lg:items-start relative overflow-hidden group">
+                    <div class="absolute right-2 top-2 opacity-10 group-hover:scale-110 transition-transform text-indigo-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Score</span>
+                    <span id="stat-score" class="text-2xl lg:text-3xl font-black font-mono text-indigo-400 mt-1">00000</span>
+                </div>
+
+                <!-- Level Card -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-4 flex flex-col items-center lg:items-start relative overflow-hidden group">
+                    <div class="absolute right-2 top-2 opacity-10 group-hover:scale-110 transition-transform text-purple-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Level</span>
+                    <span id="stat-level" class="text-2xl lg:text-3xl font-black font-mono text-purple-400 mt-1">1</span>
+                </div>
+
+                <!-- Lines Card -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-4 flex flex-col items-center lg:items-start relative overflow-hidden group">
+                    <div class="absolute right-2 top-2 opacity-10 group-hover:scale-110 transition-transform text-cyan-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Lines</span>
+                    <span id="stat-lines" class="text-2xl lg:text-3xl font-black font-mono text-cyan-400 mt-1">0</span>
+                </div>
+            </div>
+
+            <!-- In-Game Controls Sidebar (Muted/Interactive) -->
+            <div class="bg-slate-900/30 border border-slate-800/80 rounded-2xl p-4 space-y-4">
+                <!-- Action Buttons (Pause & Reset) -->
+                <div class="grid grid-cols-2 gap-3">
+                    <button id="btn-pause-toggle" disabled class="py-2.5 px-4 bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed text-slate-200 text-sm font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 border border-slate-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Pause
+                    </button>
+                    <button id="btn-reset-game" disabled class="py-2.5 px-4 bg-rose-500/10 hover:bg-rose-500/20 disabled:opacity-40 disabled:cursor-not-allowed text-rose-400 text-sm font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 border border-rose-500/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H18.2" />
+                        </svg>
+                        Restart
+                    </button>
+                </div>
+
+                <!-- Keyboard Instructions -->
+                <div class="hidden md:block space-y-3 pt-2 border-t border-slate-850">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">Keyboard Controls</span>
+                    <div class="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs text-slate-400">
+                        <div class="flex items-center gap-2">
+                            <kbd class="px-2 py-1 bg-slate-800 text-slate-200 border border-slate-700 rounded-md font-mono font-semibold shadow-sm">←</kbd>
+                            <kbd class="px-2 py-1 bg-slate-800 text-slate-200 border border-slate-700 rounded-md font-mono font-semibold shadow-sm">→</kbd>
+                            <span>Move Piece</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <kbd class="px-2 py-1 bg-slate-800 text-slate-200 border border-slate-700 rounded-md font-mono font-semibold shadow-sm">↑</kbd>
+                            <span>Rotate</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <kbd class="px-2 py-1 bg-slate-800 text-slate-200 border border-slate-700 rounded-md font-mono font-semibold shadow-sm">↓</kbd>
+                            <span>Soft Drop</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <kbd class="px-4 py-1 bg-slate-800 text-slate-200 border border-slate-700 rounded-md font-mono font-semibold shadow-sm">Space</kbd>
+                            <span>Hard Drop</span>
+                        </div>
+                        <div class="flex items-center gap-2 col-span-2">
+                            <kbd class="px-2 py-1 bg-slate-800 text-slate-200 border border-slate-700 rounded-md font-mono font-semibold shadow-sm">P</kbd>
+                            <span>Pause / Resume Game</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Controls (Visible on mobile/tablet) -->
+            <div class="md:hidden flex flex-col items-center gap-4 bg-slate-900/30 border border-slate-800/80 rounded-2xl p-4">
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest self-start">Mobile Controls</span>
+                <div class="grid grid-cols-3 gap-3 w-full max-w-[280px]">
+                    <!-- Row 1 -->
+                    <div></div>
+                    <button id="ctrl-rotate" class="h-12 bg-slate-800 active:bg-slate-700 border border-slate-700 rounded-xl flex items-center justify-center text-slate-200 shadow-sm active:scale-95 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H18.2" />
+                        </svg>
+                    </button>
+                    <div></div>
+
+                    <!-- Row 2 -->
+                    <button id="ctrl-left" class="h-12 bg-slate-800 active:bg-slate-700 border border-slate-700 rounded-xl flex items-center justify-center text-slate-200 shadow-sm active:scale-95 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button id="ctrl-drop" class="h-12 bg-indigo-600/30 active:bg-indigo-600/50 border border-indigo-500/30 rounded-xl flex items-center justify-center text-indigo-400 font-bold shadow-sm active:scale-95 transition-all text-xs">
+                        DROP
+                    </button>
+                    <button id="ctrl-right" class="h-12 bg-slate-800 active:bg-slate-700 border border-slate-700 rounded-xl flex items-center justify-center text-slate-200 shadow-sm active:scale-95 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
+                    <!-- Row 3 -->
+                    <div></div>
+                    <button id="ctrl-down" class="h-12 bg-slate-800 active:bg-slate-700 border border-slate-700 rounded-xl flex items-center justify-center text-slate-200 shadow-sm active:scale-95 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Styling adjustments for dark neon vibe */
+    #tetris-board {
+        image-rendering: pixelated;
+        box-shadow: inset 0 4px 20px rgba(0,0,0,0.8);
+    }
+    
+    /* Animation for glowing elements */
+    #stat-score, #stat-level, #stat-lines {
+        text-shadow: 0 0 10px currentColor;
+    }
+
+    /* Style for keys in instructions */
+    kbd {
+        font-size: 10px;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+</style>
+
+<script src="./tetris.ts"></script>
