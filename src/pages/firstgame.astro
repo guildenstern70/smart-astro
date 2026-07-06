@@ -1,33 +1,33 @@
 ---
 import Layout from "../layouts/layout.astro";
-import Riddle from "../components/riddle.astro";
+import Tetris from "../components/tetris.astro";
 ---
 
 <Layout>
-    <div class="max-w-4xl mx-auto space-y-12">
-        <div class="flex flex-col md:flex-row gap-12 items-center">
-            <div class="flex-1 space-y-6">
-                <h1 class="text-4xl font-extrabold text-gray-900 leading-tight">
-                    Mind Reader Challenge
-                </h1>
-                <p class="text-xl text-gray-600 leading-relaxed">
-                    I've hidden a secret number. Can you guess what it is? This interactive component 
-                    demonstrates Astro's ability to handle client-side logic with ease.
-                </p>
-                <div class="pt-4">
-                    <a href="/" class="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500 transition-colors group">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
-                        Back to Home
-                    </a>
-                </div>
+    <div class="max-w-4xl mx-auto space-y-8">
+        <!-- Title & Description Header -->
+        <div class="space-y-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
+                Tetris <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Retro Arcade</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed">
+                Arrange falling tetromino blocks into complete rows. As rows clear, your score increases and the speed ramps up. 
+                Use your keyboard on desktop or the touch interface on mobile.
+            </p>
+            <div class="pt-2 flex justify-center">
+                <a href="/" class="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500 transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Back to Home
+                </a>
             </div>
-            <div class="flex-1 w-full">
-                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-xl ring-1 ring-gray-900/5">
-                    <Riddle />
-                </div>
-            </div>
+        </div>
+        
+        <!-- Game Console Card -->
+        <div class="w-full">
+            <Tetris />
         </div>
     </div>
 </Layout>
+
